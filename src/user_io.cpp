@@ -22,12 +22,12 @@ double getDouble( std::istream& is, std::ostream& os, const std::string& prompt 
     return c;
 }
 int askQuestions3(std::istream& is, std::ostream& os) {
-    std::string color = getString(is, os, "What is your favorite color?");
-    int n = getInteger(is, os, "What is your favorite integer?");
-    double f = getDouble(is, os, "What is your favorite number?");
+    std::string color = getString(is, os, "What is your favorite color? ");
+    int n = getInteger(is, os, "What is your favorite integer? ");
+    double f = getDouble(is, os, "What is your favorite number? ");
     if(n > 0) {
         for(int i = 0; i < n; i++) {
-        os << i+1 << " " << color << " " << n << "." << f << std::endl;
+        os << i+1 << " " << color << " " << f << std::endl;
         }
     }
     else {
