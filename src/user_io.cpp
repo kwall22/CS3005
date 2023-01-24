@@ -1,6 +1,6 @@
+#include <string>
 #include "image_menu.h"
 #include <iostream>
-#include <string>
 
 std::string getString( std::istream& is, std::ostream& os, const std::string& prompt ) {
     std::string b;
