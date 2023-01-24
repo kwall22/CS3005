@@ -2,6 +2,7 @@
 #include "Image.h"
 
 void diagonalQuadPattern( std::istream& is, std::ostream& os, Image& image ) {
+    (void) is;
     int height = getInteger(is, os, "Image height? ");
     int width = getInteger(is, os, "Image width? ");
     image.setHeight(height);
