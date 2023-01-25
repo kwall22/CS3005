@@ -45,7 +45,7 @@ void drawAsciiImage( std::istream& is, std::ostream& os, const Image& image ) {
                 os << " ";
             }
             }
-        os << "/n";
+        os << std::endl;
     }
 
 }
