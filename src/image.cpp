@@ -26,7 +26,7 @@ int Image::index(const int &row, const int &column, const int &channel) const {
 }
 int Image::getChannel(const int &row, const int &column, const int &channel) const {
     if (indexValid(row, column, channel)) {
-        int rvalue = index(row, column, channel);
+        int rvalue = mVector[index(row, column, channel)];
         return rvalue;
     }
     return -1;
