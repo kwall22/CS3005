@@ -22,7 +22,7 @@ bool Image::indexValid(const int& row, const int& column, const int& channel) co
 }
 int Image::index(const int &row, const int &column, const int &channel) const {
     int index = (row * mWidth * 3 + column * 3) + channel;
-    return mVector[index];
+    return index;
 }
 int Image::getChannel(const int &row, const int &column, const int &channel) const {
     if (indexValid(row, column, channel)) {
