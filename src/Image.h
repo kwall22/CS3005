@@ -23,6 +23,5 @@ private:
     int mHeight;
     int mWidth;
     std::vector<int> mVector;
-    int mChannel;
 };
 #endif
