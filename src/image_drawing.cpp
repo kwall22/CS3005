@@ -52,6 +52,7 @@ void stripedDiagonalPattern( std::istream& is, std::ostream& os, PPM& p ){
         for (;i2 % 3 != 0; i2++){
             p.setChannel(i, i2, 0, p.getMaxColorValue());
         }
+        i2++;
     }
 //green
     for(i = 0; i < height; i++){
