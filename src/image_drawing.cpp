@@ -38,7 +38,7 @@ void stripedDiagonalPattern( std::istream& is, std::ostream& os, PPM& p ){
     int width = getInteger(is, os, "Image width? ");
     p.setHeight(height);
     p.setWidth(width);
-    int val = height + width / 3;
+    int val = (height + width) / 3;
     if (val >= 255){
         p.setMaxColorValue(255);
     }
