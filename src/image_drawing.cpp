@@ -43,7 +43,7 @@ void stripedDiagonalPattern( std::istream& is, std::ostream& os, PPM& p ){
         p.setMaxColorValue(255);
     }
     else {
-    p.setMaxColorValue(height + width / 3);
+    p.setMaxColorValue((height + width) / 3);
     }
 //red 
     int i = height/2;
