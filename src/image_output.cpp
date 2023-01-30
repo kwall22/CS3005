@@ -1,5 +1,9 @@
 #include "image_menu.h"
 #include "Image.h"
+#include "PPM.h"
+#include <fstream>
+//#include "user_io.cpp"
+
 void drawAsciiImage( std::istream& is, std::ostream& os, const Image& image ) {
     (void) is;
     int row = image.getHeight();
@@ -48,4 +52,11 @@ void drawAsciiImage( std::istream& is, std::ostream& os, const Image& image ) {
         os << std::endl;
     }
 
+}
+
+void writeUserImage( std::istream& is, std::ostream& os, const PPM& p ){
+    std::string f_name = getString(is, os, "Output filename? ");
+    std::ofstream myFile (f_name, std::ofstream::binary);
+    p.writeStream(myFile);
+    myFile.close();
 }
