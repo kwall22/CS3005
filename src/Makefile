@@ -55,3 +55,4 @@ clean:
 	-rm -f questions_3
 	-rm -f ascii_image
 	-rm -f image_file
+	-rm -f flag_romania
