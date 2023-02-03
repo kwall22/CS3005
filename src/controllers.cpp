@@ -19,3 +19,10 @@ int assignment3( std::istream& is, std::ostream& os ) {
     writeUserImage(is, os, MyPPM);
     return 0;
 }
+
+int flag_romania( std::istream& is, std::ostream& os ) {
+    PPM romania;
+    flagRomaniaPattern(is, os, romania);
+    writeUserImage(is, os, romania);
+    return 0;
+}

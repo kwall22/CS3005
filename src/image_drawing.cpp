@@ -70,3 +70,38 @@ void stripedDiagonalPattern( std::istream& is, std::ostream& os, PPM& p ){
         }
     }
 }
+
+void flagRomaniaPattern( std::istream& is, std::ostream& os, PPM& p ){
+    int height = getInteger(is, os, "Image height? ");
+    p.setHeight(height);
+    int width = (height * 3) / 2;
+    p.setWidth(width);
+    p.setMaxColorValue(255);
+
+    //blue section 
+    int i;
+    int i2 = 0;
+    for (i = 0; i < height; i++){
+        for (i2 = 0; i2 < width / 3; i2++ ){
+                p.setChannel(i, i2, 0, 0);
+                p.setChannel(i, i2, 1, 43);
+                p.setChannel(i, i2, 2, 127);
+        }
+    }
+    //yellow section
+    for (i = 0; i < height; i++){
+        for (i2 = width / 3; i2 < (width / 3) * 2 ; i2++ ){
+                p.setChannel(i, i2, 0, 252);
+                p.setChannel(i, i2, 1, 209);
+                p.setChannel(i, i2, 2, 22);
+        }
+    }
+    //red section
+    for (i = 0; i < height; i++){
+        for (i2 = (width / 3) * 2; i2 < width ; i2++ ){
+                p.setChannel(i, i2, 0, 206);
+                p.setChannel(i, i2, 1, 17);
+                p.setChannel(i, i2, 2, 38);
+        }
+    }
+}

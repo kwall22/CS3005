@@ -1,5 +1,11 @@
 
-all: image_file ascii_image questions_3 hello
+all: image_file ascii_image questions_3 hello flag_romania
+
+flag_romania: flag_romania.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o
+	g++ -std=c++11 -o flag_romania flag_romania.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o
+
+flag_romania.o: flag_romania.cpp image_menu.h PPM.h
+	g++ -std=c++11 -c flag_romania.cpp
 
 image_file: image_file.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o
 	g++ -std=c++11 -o image_file image_file.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o
