@@ -77,6 +77,9 @@ void flagRomaniaPattern( std::istream& is, std::ostream& os, PPM& p ){
     int width = (height * 3) / 2;
     p.setWidth(width);
     p.setMaxColorValue(255);
+    //int col_1 = p.getWidth() / 3
+    //int col_2 = p.getWidth() / 3 + col_1
+    //int col_3 = p.getWidth() / 3 + col_1 + col_2
 
     //blue section 
     int i;
