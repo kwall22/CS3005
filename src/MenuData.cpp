@@ -1,5 +1,7 @@
 #include "MenuData.h"
 
+MenuData::MenuData(){}
+
 void MenuData::addAction(const std::string &name, ActionFunctionType func, const std::string &description) {
     mNames.insert(mNames.begin(), name);
     mActions[name] = func;
