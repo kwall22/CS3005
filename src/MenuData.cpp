@@ -3,7 +3,7 @@
 MenuData::MenuData(){}
 
 void MenuData::addAction(const std::string& name, ActionFunctionType func, const std::string& description) {
-    mNames.insert(mNames.begin(), name);
+    mNames.push_back(name);
     mActions[name] = func;
     mDescriptions[name] = description;
 }
