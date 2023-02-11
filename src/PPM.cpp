@@ -55,7 +55,6 @@ void PPM::writeStream(std::ostream &os) const {
 void PPM::readStream(std::istream &is) {
     //watch zoom for febuary 6
     int row, col, chan;
-    unsigned int c;
     std::string p6;
     int width, height, val;
     is >> p6;
@@ -64,11 +63,12 @@ void PPM::readStream(std::istream &is) {
     is >> height;
     Image::setHeight(height);
     is >> val; 
-    PPM::setMaxColorValue(val); 
+    PPM::setMaxColorValue(val);
+    unsigned char c;
     is.read((char *) &c, 1);
     for(row = 0; row < height; row++){
         for(col=0; col < width; col ++){
-            for(chan = 0; chan <= 2; chan ++){
+            for(chan = 0; chan < 3; chan ++){
                 is.read((char *) &c, 1);
                 PPM::setChannel(row, col, chan, c);
             }
