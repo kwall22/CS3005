@@ -68,3 +68,4 @@ clean:
 	-rm -f ascii_image
 	-rm -f image_file
 	-rm -f flag_romania
+	-rm -f ppm_menu
