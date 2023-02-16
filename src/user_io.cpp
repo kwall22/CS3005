@@ -1,33 +1,34 @@
 #include <string>
 #include "image_menu.h"
 #include <iostream>
+#include "ActionData.h"
 
-std::string getString( std::istream& is, std::ostream& os, const std::string& prompt ) {
+
+std::string getString( ActionData& action_data, const std::string& prompt ) {
     std::string b;
-    os << prompt;
-    is >> b;
+    action_data.getOS() << prompt;
+    action_data.getIS() >> b;
     return b;
 }
-int getInteger(std::istream& is, std::ostream& os, const 
-std::string& prompt) {
+int getInteger(ActionData& action_data, const std::string& prompt) {
     int a;
-    os << prompt;
-    is >> a;
+    action_data.getOS() << prompt;
+    action_data.getIS() >> a;
     return a;
 }
-double getDouble( std::istream& is, std::ostream& os, const std::string& prompt ) {
+double getDouble( ActionData& action_data, const std::string& prompt ) {
     double c;
-    os << prompt;
-    is >> c;
+    action_data.getOS() << prompt;
+    action_data.getIS() >> c;
     return c;
 }
-int askQuestions3(std::istream& is, std::ostream& os) {
-    std::string color = getString(is, os, "What is your favorite color? ");
-    int n = getInteger(is, os, "What is your favorite integer? ");
-    double f = getDouble(is, os, "What is your favorite number? ");
+int askQuestions3(ActionData& action_data) {
+    std::string color = getString(action_data, "What is your favorite color? ");
+    int n = getInteger(action_data, "What is your favorite integer? ");
+    double f = getDouble(action_data, "What is your favorite number? ");
     if(n > 0) {
         for(int i = 0; i < n; i++) {
-        os << i+1 << " " << color << " " << f << std::endl;
+        action_data.getOS() << i+1 << " " << color << " " << f << std::endl;
         }
     }
     else {
@@ -35,4 +36,18 @@ int askQuestions3(std::istream& is, std::ostream& os) {
     }
     return n;
 }
+std::string getChoice( ActionData& action_data ){
+    std::string choice = getString(action_data, "Choice? ");
+    return choice;
+}
 
+void commentLine( ActionData& action_data ){
+    unsigned char c;
+    while(action_data.getIS().good() && c != '\n'){
+        action_data.getIS().read((char *) &c, 1);
+    }
+}
+
+void quit(ActionData& action_data){
+    action_data.setDone();
+}
