@@ -2,7 +2,7 @@
 all: ppm_menu image_file ascii_image questions_3 hello flag_romania ActionData.o MenuData.o
 
 ppm_menu: ppm_menu.o image_file.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o ActionData.o MenuData.o
-	g++ -std=c++11 -o image_file image_file.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o ActionData.o MenuData.o
+	g++ -std=c++11 -o ppm_menu image_file.o PPM.o image.o controllers.o image_drawing.o image_output.o user_io.o ActionData.o MenuData.o
 
 ppm_menu.o: ppm_menu.cpp image_menu.h
 	g++ -std=c++11 -c ppm_menu.cpp
