@@ -45,7 +45,7 @@ int imageMenu(std::istream& is, std::ostream& os){
     ActionData action_data(is, os);
     MenuData menu_data;
     configureMenu(menu_data);
-    showMenu(menu_data, action_data);
+    //showMenu(menu_data, action_data);
     std::string choice;
     while(action_data.getDone() != true && action_data.getIS().good()){
         choice = getChoice(action_data);
