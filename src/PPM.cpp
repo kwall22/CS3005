@@ -18,6 +18,222 @@ bool PPM::valueValid(const int &value) const {
     return false;
 }
 
+bool PPM::operator==(const PPM &rhs) const{
+    if (mHeight * mWidth == rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+bool PPM::operator!=(const PPM &rhs) const{
+    if (mHeight * mWidth != rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+bool PPM::operator<(const PPM &rhs) const{
+    if (mHeight * mWidth < rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+bool PPM::operator<=(const PPM &rhs) const{
+    if (mHeight * mWidth <= rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+bool PPM::operator>(const PPM &rhs) const{
+    if (mHeight * mWidth > rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+bool PPM::operator>=(const PPM &rhs) const{
+    if (mHeight * mWidth >= rhs.mHeight * rhs.mWidth){
+        return true;
+    }
+    return false;
+}
+
+PPM &PPM::operator+=(const PPM &rhs){
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int rhs_val = rhs.getChannel(row, col, chan);
+                int add_val = lhs_val + rhs_val;
+                if (add_val > getMaxColorValue()){
+                    setChannel(row, col, chan, getMaxColorValue());
+                }
+                else if (add_val < 0){
+                    setChannel(row, col, chan, 0);
+                }
+                else {
+                    setChannel(row, col, chan, add_val);
+                }
+            }
+        }
+    }
+    return *this;
+}
+
+PPM &PPM::operator-=(const PPM &rhs) {
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int rhs_val = rhs.getChannel(row, col, chan);
+                int minus_val = lhs_val - rhs_val;
+                if (minus_val < 0){
+                    setChannel(row, col, chan, 0);
+                }
+                else {
+                    setChannel(row, col, chan, minus_val);
+                }
+            }
+        }
+    }
+    return *this;
+}
+
+PPM &PPM::operator*=(const double& rhs) {
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int times_val = lhs_val * rhs;
+                if (times_val < 0){
+                    setChannel(row, col, chan, 0);
+                }
+                else if (times_val > getMaxColorValue()){
+                    setChannel(row, col, chan, getMaxColorValue());
+                }
+                else {
+                    setChannel(row, col, chan, times_val);
+                }
+            }
+        }
+    }
+    return *this;
+}
+
+PPM &PPM::operator/=(const double &rhs) {
+    for (int row = 0; row < mHeight; row++){
+        for(int col = 0; col < mWidth; col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                double div_val = lhs_val / rhs;
+                if (div_val < 0){
+                    setChannel(row, col, chan, 0);
+                }
+                else if (div_val > getMaxColorValue()){
+                    setChannel(row, col, chan, getMaxColorValue());
+                }
+                else {
+                    setChannel(row, col, chan, div_val);
+                }
+            }
+        }
+    }
+    return *this;
+}
+
+PPM PPM::operator+(const PPM &rhs) const {
+    PPM NewPPM(getHeight(), getWidth());
+    NewPPM.setMaxColorValue(getMaxColorValue());
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int rhs_val = rhs.getChannel(row, col, chan);
+                int add_val = lhs_val + rhs_val;
+                if (add_val > getMaxColorValue()){
+                    NewPPM.setChannel(row, col, chan, getMaxColorValue());
+                }
+                else if (add_val < 0){
+                    NewPPM.setChannel(row, col, chan, 0);
+                }
+                else {
+                    NewPPM.setChannel(row, col, chan, add_val);
+                }
+            }
+        }
+    }
+    return NewPPM;
+}
+
+PPM PPM::operator-(const PPM &rhs) const{
+    PPM NewPPM(getHeight(), getWidth());
+    NewPPM.setMaxColorValue(getMaxColorValue());
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int rhs_val = rhs.getChannel(row, col, chan);
+                int minus_val = lhs_val - rhs_val;
+                if (minus_val < 0){
+                    NewPPM.setChannel(row, col, chan, 0);
+                }
+                else {
+                    NewPPM.setChannel(row, col, chan, minus_val);
+                }
+            }
+        }
+    }
+    return NewPPM;
+}
+
+PPM PPM::operator*(const double &rhs) const {
+    PPM NewPPM(getHeight(), getWidth());
+    NewPPM.setMaxColorValue(getMaxColorValue());
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int times_val = lhs_val * rhs;
+                if (times_val > getMaxColorValue()){
+                    NewPPM.setChannel(row, col, chan, getMaxColorValue());
+                }
+                else if (times_val < 0){
+                    NewPPM.setChannel(row, col, chan, 0);
+                }
+                else {
+                    NewPPM.setChannel(row, col, chan, times_val);
+                }
+            }
+        }
+    }
+    return NewPPM;
+}
+
+PPM PPM::operator/(const double &rhs) const {
+    PPM NewPPM(getHeight(), getWidth());
+    NewPPM.setMaxColorValue(getMaxColorValue());
+    for (int row = 0; row < getHeight(); row++){
+        for(int col = 0; col < getWidth(); col++){
+            for(int chan = 0; chan < 3; chan++){
+                int lhs_val = getChannel(row, col, chan);
+                int div_val = lhs_val / rhs;
+                if (div_val > getMaxColorValue()){
+                    NewPPM.setChannel(row, col, chan, getMaxColorValue());
+                }
+                else if (div_val < 0){
+                    NewPPM.setChannel(row, col, chan, 0);
+                }
+                else {
+                    NewPPM.setChannel(row, col, chan, div_val);
+                }
+            }
+        }
+    }
+    return NewPPM;
+}
+
 void PPM::setMaxColorValue(const int &max_color_value) {
     if (max_color_value >= 1 && max_color_value <= 255){
         mMaxColorValue = max_color_value;

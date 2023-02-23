@@ -19,6 +19,16 @@ void readUserImage1( ActionData& action_data ){
     }
 }
 
+void readUserImage2(ActionData &action_data) {
+    std::string f_name = getString(action_data, "Input filename? ");
+    std::ifstream myFile;
+    myFile.open(f_name, std::ifstream::binary);
+    action_data.getInputImage2().readStream(myFile);
+    if(!myFile.good()){ //or .is_open() or .fail()
+        std::cout << "'"<< f_name << "'"<< " could not be opened." << std::endl;;
+    }
+}
+
 void drawAsciiImage( ActionData& action_data ) {
     (void) action_data.getIS();
     int row = action_data.getOutputImage().getHeight();
@@ -75,3 +85,4 @@ void writeUserImage( ActionData& action_data ){
     action_data.getOutputImage().writeStream(myFile);
     myFile.close();
 }
+

@@ -19,7 +19,7 @@ public:
     void setWidth( const int& width );
     void setChannel( const int& row, const int& column, const int& channel, const int& value );
 
-private:
+protected:
     int mHeight;
     int mWidth;
     std::vector<int> mVector;
