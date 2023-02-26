@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "PPM.h"
 #include "ActionData.h"
+#include <cmath>
 
 void setSize( ActionData& action_data ){
     int height = getInteger(action_data, "Height? ");
@@ -146,6 +147,37 @@ void flagRomaniaPattern( ActionData& action_data ){
                 action_data.getInputImage1().setChannel(i, i2, 0, 206);
                 action_data.getInputImage1().setChannel(i, i2, 1, 17);
                 action_data.getInputImage1().setChannel(i, i2, 2, 38);
+        }
+    }
+}
+void drawCircle(ActionData &action_data) {
+    int c_row = getInteger(action_data, "Center Row? ");
+    int c_col = getInteger(action_data, "Center Column? ");
+    int radius = getInteger(action_data, "Radius? ");
+    int red = getInteger(action_data, "Red? ");
+    int green = getInteger(action_data, "Green? ");
+    int blue = getInteger(action_data, "Blue? ");
+    for (int row = c_row - radius; row <= c_row + radius; row++){
+        for (int col = c_col - radius; col <= c_col + radius; col++){
+            double dist = sqrt(((row - c_row)*(row - c_row)) + ((col - c_col)*(col - c_col)));
+            if (dist <= radius){
+                action_data.getInputImage1().setPixel(row, col, red, green, blue);
+            }
+        }
+    }
+}
+
+void drawBox(ActionData &action_data) {
+    int t_row = getInteger(action_data, "Top Row? ");
+    int l_col = getInteger(action_data, "Left Column? ");
+    int b_row = getInteger(action_data, "Bottom Row? ");
+    int r_col = getInteger(action_data, "Right Column? ");
+    int red = getInteger(action_data, "Red? ");
+    int green = getInteger(action_data, "Green? ");
+    int blue = getInteger(action_data, "Blue? ");
+    for (int row = t_row; row <= b_row; row++ ){
+        for (int col = l_col; col <= r_col; col++){
+            action_data.getInputImage1().setPixel(row, col, red, green, blue);
         }
     }
 }
