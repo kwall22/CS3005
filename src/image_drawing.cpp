@@ -181,3 +181,23 @@ void drawBox(ActionData &action_data) {
         }
     }
 }
+
+void drawSquare(ActionData &action_data) {
+    int s_row = getInteger(action_data, "Row? ");
+    int s_col = getInteger(action_data, "Column? ");
+    int size = getInteger(action_data, "Size? ");
+    int red = getInteger(action_data, "Red? ");
+    int green = getInteger(action_data, "Green? ");
+    int blue = getInteger(action_data, "Blue? ");
+    double start_row = s_row - (size/2);
+    double end_row = s_row + (size/2);
+    double start_col = s_col - (size/2);
+    double end_col = s_col + (size/2);
+    for (int row = start_row ; row <= end_row; row++ ){
+        for (int col = start_col; col <= end_col; col++){
+            if (row >= start_row && row <= end_row && col >= start_col && col <= end_col){
+                action_data.getInputImage1().setPixel(row, col, red, green, blue);
+        }
+    }
+}
+}

@@ -26,6 +26,7 @@ public:
     PPM operator*( const double& rhs ) const;
     PPM operator/( const double& rhs ) const;
 
+    void orangeFilter(PPM& dst) const;
     void grayFromChannel( PPM& dst, const int& src_channel ) const;
     void grayFromRed( PPM& dst ) const;
     void grayFromGreen( PPM& dst ) const;

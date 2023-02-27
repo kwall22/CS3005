@@ -50,4 +50,7 @@ void grayFromBlue(ActionData &action_data) {
 void grayFromLinearColorimetric(ActionData &action_data) {
     action_data.getInputImage1().grayFromLinearColorimetric(action_data.getOutputImage());
 }
+void orangeFilter(ActionData& action_data){
+    action_data.getInputImage1().orangeFilter(action_data.getOutputImage());
+}
 

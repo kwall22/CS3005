@@ -47,3 +47,5 @@ void grayFromBlue(ActionData& action_data);
 void grayFromLinearColorimetric(ActionData& action_data);
 void drawCircle(ActionData& action_data);
 void drawBox(ActionData& action_data);
+void drawSquare(ActionData& action_data);
+void orangeFilter(ActionData& action_data);
