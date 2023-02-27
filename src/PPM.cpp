@@ -272,7 +272,7 @@ void PPM::grayFromLinearColorimetric(PPM &dst) const {
     dst.setMaxColorValue(getMaxColorValue());
     for (int row = 0; row < dst.getHeight(); row++){
         for (int col = 0; col < dst.getWidth(); col++){
-            double val = this->linearColorimetricPixelValue(row, col);
+            double val = linearColorimetricPixelValue(row, col);
             dst.setPixel(row, col, val, val, val);
         }
     }
