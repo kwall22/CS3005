@@ -8,7 +8,7 @@ jobs:
     name: Pull source code
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         
 ##########################################################################
 
@@ -23,6 +23,7 @@ jobs:
       PROGRAM: hello
       ASSIGNMENT: hello
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -53,6 +54,7 @@ jobs:
       PROGRAM: questions_3
       ASSIGNMENT: questions_3
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -82,6 +84,7 @@ jobs:
     env:
       ASSIGNMENT: questions_3_unit_tests
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -110,6 +113,7 @@ jobs:
       PROGRAM: ascii_image
       ASSIGNMENT: ascii_image
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -138,6 +142,7 @@ jobs:
     env:
       ASSIGNMENT: ascii_image_unit_tests
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -166,6 +171,7 @@ jobs:
       PROGRAM: image_file
       ASSIGNMENT: image_file
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -194,6 +200,7 @@ jobs:
     env:
       ASSIGNMENT: image_file_unit_tests
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -221,6 +228,7 @@ jobs:
     env:
       ASSIGNMENT: action_data_menu_data_unit_tests
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -249,6 +257,7 @@ jobs:
       PROGRAM: ppm_menu
       ASSIGNMENT: ppm_menu
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -281,6 +290,7 @@ jobs:
       PROGRAM: ppm_menu
       ASSIGNMENT: operator
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -313,6 +323,7 @@ jobs:
       PROGRAM: ppm_menu
       ASSIGNMENT: gray-draw
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -344,6 +355,7 @@ jobs:
     env:
       ASSIGNMENT: number-grid
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -375,6 +387,7 @@ jobs:
     env:
       ASSIGNMENT: colortable
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -406,6 +419,7 @@ jobs:
     env:
       ASSIGNMENT: complex-fractal
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -437,6 +451,7 @@ jobs:
     env:
       ASSIGNMENT: julia-set
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -468,6 +483,7 @@ jobs:
     env:
       ASSIGNMENT: mandelbrot-set
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
@@ -499,6 +515,7 @@ jobs:
     env:
       ASSIGNMENT: threadedgrid
     steps:
+      - uses: actions/checkout@v3
       - name: Enabled?
         id: step1
         run: grade_manager --cmd enabled --programs ${{ env.ASSIGNMENT }} --verbose
