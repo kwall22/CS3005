@@ -2,6 +2,7 @@
 #define ActionData_H
 #include <iostream>
 #include "PPM.h"
+#include "NumberGrid.h"
 
 
 
@@ -17,14 +18,18 @@ public:
     PPM& getOutputImage();
     bool getDone() const;
     void setDone();
+    ~ActionData();
+    NumberGrid& getGrid();
+    void setGrid(NumberGrid *grid);
 
-private:
+protected:
     std::istream& mIs;
     std::ostream& mOs;
     PPM mII1;
     PPM mII2;
     PPM mOutI;
     bool mQuit;
+    NumberGrid *mGrid;
 
 };
 #endif

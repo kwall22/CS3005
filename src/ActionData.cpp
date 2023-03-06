@@ -1,7 +1,7 @@
 #include "ActionData.h"
 
 ActionData::ActionData(std::istream& is, std::ostream& os) 
-    : mIs(is), mOs(os), mQuit(false) {
+    : mIs(is), mOs(os), mQuit(false), mGrid(0){
 }
 
 std::istream& ActionData::getIS() {
@@ -30,4 +30,21 @@ bool ActionData::getDone() const {
 
 void ActionData::setDone() {
     mQuit = true;
+}
+
+ActionData::~ActionData(){
+    if(mGrid != 0) {
+    delete mGrid;
+  }
+}
+
+NumberGrid& ActionData::getGrid() {
+  return *mGrid;
+}
+
+void ActionData::setGrid(NumberGrid *grid) {
+    if(mGrid != 0) {
+    delete mGrid;
+  }
+  mGrid = grid;
 }

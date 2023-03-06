@@ -2,6 +2,7 @@
 #include "Image.h"
 #include "PPM.h"
 #include "ActionData.h"
+#include "NumberGrid.h"
 #include <cmath>
 
 void setSize( ActionData& action_data ){
@@ -200,4 +201,25 @@ void drawSquare(ActionData &action_data) {
         }
     }
 }
+}
+
+void configureGrid(ActionData &action_data) {
+    int height = getInteger(action_data, "Grid Height? ");
+    int width = getInteger(action_data, "Grid Width? ");
+    int max_value = getInteger(action_data, "Grid Max Value? ");
+    //NumberGrid& a_grid = action_data.getGrid();
+    action_data.getGrid().setGridSize(height, width);
+    action_data.getGrid().setMaxNumber(max_value);
+}
+
+void setGrid(ActionData &action_data) {
+    int row = getInteger(action_data, "Grid Row? ");
+    int col = getInteger(action_data, "Grid Column? ");
+    int value = getInteger(action_data, "Grid Value? ");
+    //NumberGrid& a_grid = action_data.getGrid();
+    action_data.getGrid().setNumber(row, col, value);
+}
+
+void applyGrid(ActionData &action_data){
+   action_data.getGrid().setPPM(action_data.getOutputImage());
 }
