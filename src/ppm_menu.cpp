@@ -1,5 +1,6 @@
 #include <iostream>
 #include "image_menu.h"
+#include <ctime>
 
 int main(){
     std::srand(std::time(0));
