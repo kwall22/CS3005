@@ -1,7 +1,8 @@
 #include "ActionData.h"
 
 ActionData::ActionData(std::istream& is, std::ostream& os) 
-    : mIs(is), mOs(os), mQuit(false), mGrid(0){
+    : mIs(is), mOs(os), mQuit(false), mGrid(0), mColors_table(16){
+        mColors_table.insertGradient(Color(0,255,0), Color(255,0,255), 0, 15);
 }
 
 std::istream& ActionData::getIS() {
@@ -47,4 +48,8 @@ void ActionData::setGrid(NumberGrid *grid) {
     delete mGrid;
   }
   mGrid = grid;
+}
+
+ColorTable &ActionData::getTable() {
+  return mColors_table;
 }

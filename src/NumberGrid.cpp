@@ -30,7 +30,7 @@ void NumberGrid::setGridSize(const int& height, const int& width) {
     if(height >= 2 && width >= 2){
         mHeight = height;
         mWidth = width;
-        mMaxValue = 255;
+        //mMaxValue = 255;
         mGrid.resize(mHeight * mWidth);
     }
 }
@@ -38,11 +38,6 @@ void NumberGrid::setGridSize(const int& height, const int& width) {
 void NumberGrid::setMaxNumber(const int &number) {
     if (number >= 0){
         mMaxValue = number;
-        for (int i = 0; i <= (mHeight * mWidth); i++){
-            if (mGrid[i] > mMaxValue){
-                mGrid[i];
-            }
-        }
     }
 }
 
@@ -56,8 +51,9 @@ int NumberGrid::index(const int &row, const int &column) const {
 }
 
 bool NumberGrid::indexValid(const int &row, const int &column) const {
-    if (row >= 0 && row < mHeight && column < mWidth && column >= 0)
+    if (row >= 0 && row < mHeight && column < mWidth && column >= 0){
         return true;
+    }
     return false;
     
 }
@@ -118,6 +114,29 @@ void NumberGrid::setPPM(PPM &ppm) const {
             }
             else if (getNumber(row, col) % 8 == 7){
                 ppm.setPixel(row, col, 63, 31, 63);
+            }
+        }
+    }
+}
+
+void NumberGrid::setPPM(PPM &ppm, const ColorTable &colors) const {
+    //ppm.setHeight(mHeight);
+    //ppm.setWidth(mWidth);
+    //ppm.setMaxColorValue(colors.getMaxChannelValue());
+    if (colors.getNumberOfColors() >= 2){
+        ppm.setHeight(mHeight);
+        ppm.setWidth(mWidth);
+        ppm.setMaxColorValue(colors.getMaxChannelValue());
+        for (int row = 0; row < ppm.getHeight(); row++){
+            for (int col = 0; col <= ppm.getWidth(); col++){
+                if (getNumber(row, col) == getMaxNumber()){
+                    Color end_color = colors[colors.getNumberOfColors() -1];
+                    ppm.setPixel(row, col, end_color.getRed(), end_color.getGreen(), end_color.getBlue());
+                }
+                else{
+                    Color new_color = colors[getNumber(row, col) % colors.getNumberOfColors()];
+                    ppm.setPixel(row, col, new_color.getRed(), new_color.getGreen(), new_color.getBlue());
+                }
             }
         }
     }

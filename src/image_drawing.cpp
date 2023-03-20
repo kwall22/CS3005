@@ -223,3 +223,37 @@ void setGrid(ActionData &action_data) {
 void applyGrid(ActionData &action_data){
    action_data.getGrid().setPPM(action_data.getOutputImage());
 }
+
+void setColorTableSize(ActionData &action_data) {
+    int size = getInteger(action_data, "Size? ");
+    action_data.getTable().setNumberOfColors(size);
+}
+
+void setColor(ActionData &action_data) {
+    int position = getInteger(action_data, "Position? ");
+    int red = getInteger(action_data, "Red? ");
+    int green = getInteger(action_data, "Green? ");
+    int blue = getInteger(action_data, "Blue? ");
+    action_data.getTable()[position] = Color(red, green, blue);
+}
+
+void setRandomColor(ActionData &action_data) {
+    int position = getInteger(action_data, "Position? ");
+    action_data.getTable().setRandomColor(255, position);
+}
+
+void setColorGradient(ActionData &action_data) {
+    int position_1 = getInteger(action_data, "First position? ");
+    int red_1 = getInteger(action_data, "First red? ");
+    int green_1 = getInteger(action_data, "First green? ");
+    int blue_1 = getInteger(action_data, "First blue? ");
+    int position_2 = getInteger(action_data, "Second position? ");
+    int red_2 = getInteger(action_data, "Second red? ");
+    int green_2 = getInteger(action_data, "Second green? ");
+    int blue_2 = getInteger(action_data, "Second blue? ");
+    action_data.getTable().insertGradient(Color(red_1, green_1, blue_1), Color(red_2, green_2, blue_2), position_1, position_2);
+}
+
+void applyGridColorTable(ActionData &action_data) {
+    action_data.getGrid().setPPM(action_data.getOutputImage(), action_data.getTable());
+}

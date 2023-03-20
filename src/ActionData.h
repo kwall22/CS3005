@@ -3,7 +3,7 @@
 #include <iostream>
 #include "PPM.h"
 #include "NumberGrid.h"
-
+#include "ColorTable.h"
 
 
 class ActionData {
@@ -21,6 +21,7 @@ public:
     ~ActionData();
     NumberGrid& getGrid();
     void setGrid(NumberGrid *grid);
+    ColorTable& getTable();
 
 protected:
     std::istream& mIs;
@@ -30,6 +31,7 @@ protected:
     PPM mOutI;
     bool mQuit;
     NumberGrid *mGrid;
+    ColorTable mColors_table;
 
 };
 #endif
