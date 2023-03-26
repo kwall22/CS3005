@@ -3,6 +3,7 @@
 #include "PPM.h"
 #include "ActionData.h"
 #include "MenuData.h"
+#include "ComplexFractal.h"
 #include <string>
 
 void showMenu( MenuData& menu_data, ActionData& action_data ){
@@ -64,11 +65,13 @@ void configureMenu( MenuData& menu_data ){
     menu_data.addAction("set-random-color", setRandomColor, "Randomly set the RGB values for one slot in the color table.");
     menu_data.addAction("set-color-gradient", setColorGradient, "Smoothly set the RGB values for a range of slots in the color table.");
     menu_data.addAction("grid-apply-color-table", applyGridColorTable, "Use the grid values to set colors in the output image using the color table.");
+    menu_data.addAction("fractal-plane-size", setFractalPlaneSize, "Set the dimensions of the grid in the complex plane.");
+    menu_data.addAction("fractal-calculate", calculateFractal, "Calculate the escape values for the fractal.");
 }
 
 int imageMenu(std::istream& is, std::ostream& os){
     ActionData action_data(is, os);
-    action_data.setGrid(new NumberGrid);
+    action_data.setGrid(new ComplexFractal);
     MenuData menu_data;
     configureMenu(menu_data);
     //showMenu(menu_data, action_data);

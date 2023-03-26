@@ -4,6 +4,7 @@
 #include "PPM.h"
 #include "NumberGrid.h"
 #include "ColorTable.h"
+#include "ComplexFractal.h"
 
 
 class ActionData {

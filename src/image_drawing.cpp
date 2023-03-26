@@ -3,6 +3,7 @@
 #include "PPM.h"
 #include "ActionData.h"
 #include "NumberGrid.h"
+#include "ComplexFractal.h"
 #include <cmath>
 
 void setSize( ActionData& action_data ){
@@ -256,4 +257,24 @@ void setColorGradient(ActionData &action_data) {
 
 void applyGridColorTable(ActionData &action_data) {
     action_data.getGrid().setPPM(action_data.getOutputImage(), action_data.getTable());
+}
+
+void setFractalPlaneSize(ActionData &action_data) {
+    ComplexFractal *cfptr = dynamic_cast<ComplexFractal*>(&action_data.getGrid());
+    if (cfptr != 0){
+        double min_x = getDouble(action_data, "Min X? ");
+        double max_x = getDouble(action_data, "Max X? ");
+        double min_y = getDouble(action_data, "Min Y? ");
+        double max_y = getDouble(action_data, "Max Y? ");
+        //action_data.setGrid(cfptr->setPlaneSize(min_x, max_x, min_y, max_y));
+        cfptr->setPlaneSize(min_x, max_x, min_y, max_y);
+    }
+    else{
+        action_data.getOS() << "Not a ComplexFractal object. Can't set plane size."<< std::endl; 
+    }
+}
+
+void calculateFractal(ActionData &action_data) {
+    //ComplexFractal *cfptr = dynamic_cast<ComplexFractal*>(cfptr);
+    action_data.getGrid().calculateAllNumbers();
 }

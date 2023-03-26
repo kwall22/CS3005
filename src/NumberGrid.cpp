@@ -35,6 +35,14 @@ void NumberGrid::setGridSize(const int& height, const int& width) {
     }
 }
 
+void NumberGrid::calculateAllNumbers() {
+    for (int row = 0; row <= mHeight; row++){
+        for (int col = 0; col <= mWidth; col++){
+            setNumber(row, col, calculateNumber(row, col));
+        }
+    }
+}
+
 void NumberGrid::setMaxNumber(const int &number) {
     if (number >= 0){
         mMaxValue = number;
