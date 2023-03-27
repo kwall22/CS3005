@@ -4,6 +4,7 @@
 #include "ActionData.h"
 #include "MenuData.h"
 #include "ComplexFractal.h"
+#include "JuliaSet.h"
 #include <string>
 
 void showMenu( MenuData& menu_data, ActionData& action_data ){
@@ -67,6 +68,9 @@ void configureMenu( MenuData& menu_data ){
     menu_data.addAction("grid-apply-color-table", applyGridColorTable, "Use the grid values to set colors in the output image using the color table.");
     menu_data.addAction("fractal-plane-size", setFractalPlaneSize, "Set the dimensions of the grid in the complex plane.");
     menu_data.addAction("fractal-calculate", calculateFractal, "Calculate the escape values for the fractal.");
+    menu_data.addAction("julia-parameters", setJuliaParameters, "Set the parameters of the Julia Set function.");
+    menu_data.addAction("complex-fractal", setComplexFractal, "Choose to make a complex plane.");
+    menu_data.addAction("julia", setJuliaFractal, "Choose to make a Julia set.");
 }
 
 int imageMenu(std::istream& is, std::ostream& os){
@@ -111,4 +115,14 @@ int flag_romania(std::istream& is, std::ostream& os) {
     copyImage(action_data);
     writeUserImage(action_data);
     return 0;
+}
+
+void setComplexFractal(ActionData& action_data) {
+    ComplexFractal* cf = new ComplexFractal();
+    action_data.setGrid(cf);
+}
+
+void setJuliaFractal(ActionData& action_data) {
+    JuliaSet* js = new JuliaSet();
+    action_data.setGrid(js);
 }

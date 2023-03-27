@@ -4,6 +4,7 @@
 #include "ActionData.h"
 #include "NumberGrid.h"
 #include "ComplexFractal.h"
+#include "JuliaSet.h"
 #include <cmath>
 
 void setSize( ActionData& action_data ){
@@ -278,3 +279,16 @@ void calculateFractal(ActionData &action_data) {
     //ComplexFractal *cfptr = dynamic_cast<ComplexFractal*>(cfptr);
     action_data.getGrid().calculateAllNumbers();
 }
+
+void setJuliaParameters(ActionData &action_data) {
+    JuliaSet *jsptr = dynamic_cast<JuliaSet*>(&action_data.getGrid());
+    if (jsptr != 0){
+        double a = getDouble(action_data, "Parameter a? ");
+        double b = getDouble(action_data, "Parameter b? ");
+        jsptr->setParameters(a, b);
+    }
+    else{
+        action_data.getOS() << "Not a JuliaSet object. Can't set parameters."<< std::endl; 
+    }
+}
+

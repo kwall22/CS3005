@@ -5,6 +5,7 @@
 #include "NumberGrid.h"
 #include "ColorTable.h"
 #include "ComplexFractal.h"
+#include "JuliaSet.h"
 
 
 class ActionData {

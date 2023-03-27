@@ -60,3 +60,6 @@ void setColorGradient(ActionData& action_data);
 void applyGridColorTable(ActionData& action_data);
 void setFractalPlaneSize(ActionData& action_data);
 void calculateFractal(ActionData& action_data);
+void setJuliaParameters(ActionData& action_data);
+void setComplexFractal( ActionData& action_data );
+void setJuliaFractal( ActionData& action_data );
