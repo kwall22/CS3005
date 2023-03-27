@@ -6,6 +6,7 @@
 #include "ColorTable.h"
 #include "ComplexFractal.h"
 #include "JuliaSet.h"
+#include "MandelbrotSet.h"
 
 
 class ActionData {

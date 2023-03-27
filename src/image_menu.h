@@ -63,3 +63,4 @@ void calculateFractal(ActionData& action_data);
 void setJuliaParameters(ActionData& action_data);
 void setComplexFractal( ActionData& action_data );
 void setJuliaFractal( ActionData& action_data );
+void setMandelbrotFractal( ActionData& action_data );
