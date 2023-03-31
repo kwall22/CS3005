@@ -1,5 +1,5 @@
 #include "NumberGrid.h"
-
+#include <cmath>
 NumberGrid::NumberGrid()
     : mHeight(300), mWidth(400), mMaxValue(255){
         mGrid.resize(mHeight * mWidth);
@@ -148,4 +148,22 @@ void NumberGrid::setPPM(PPM &ppm, const ColorTable &colors) const {
             }
         }
     }
+}
+
+ManhattanNumbers::ManhattanNumbers() 
+    : NumberGrid(600, 800){
+}
+
+ManhattanNumbers::ManhattanNumbers(const int& height, const int& width) 
+    : NumberGrid(height, width) {
+}
+
+ManhattanNumbers::~ManhattanNumbers(){
+}
+
+int ManhattanNumbers::calculateNumber(const int& row, const int& column) const {
+    int x1 = (mHeight / 2);
+    int y1 = (mWidth / 2);
+    int distance = std::abs(row - x1) + std::abs(column - y1);
+    return distance;
 }

@@ -64,3 +64,6 @@ void setJuliaParameters(ActionData& action_data);
 void setComplexFractal( ActionData& action_data );
 void setJuliaFractal( ActionData& action_data );
 void setMandelbrotFractal( ActionData& action_data );
+void setMandelbrotPower(ActionData& action_data);
+void setMandelbrotPowerFractal(ActionData& action_data);
+void setManhattanNumbers(ActionData& action_data);

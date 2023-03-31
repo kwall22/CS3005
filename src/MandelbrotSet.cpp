@@ -26,15 +26,16 @@ int MandelbrotSet::calculatePlaneEscapeCount(const double& a, const double& b) c
     double y_in = b;
     while (sqrt(x_in * x_in + y_in * y_in) <= 2 && escape_count < mMaxValue){
         escape_count++;
-        double x_out = (x_in * x_in) - (y_in * y_in) + a;
-        double y_out = (2 * x_in * y_in) + b; 
+        double x_out;
+        double y_out;
+        calculateNextPoint(x_in, y_in, a, b, x_out, y_out);
         x_in = x_out;
         y_in = y_out;
     }
     return escape_count;
 }
 
-int MandelbrotSet::calculateNumber(const int &row, const int &column) const {
+int MandelbrotSet::calculateNumber(const int& row, const int& column) const {
     if (row < 0 || row >= mHeight || column < 0 || column >= mWidth ){
         return -1;
     }
@@ -44,4 +45,28 @@ int MandelbrotSet::calculateNumber(const int &row, const int &column) const {
         int val = calculatePlaneEscapeCount(x, y);
         return val;
     }
+}
+
+MandelbrotPower::MandelbrotPower()
+    : MandelbrotSet(), mD(2.0){
+}
+
+MandelbrotPower::~MandelbrotPower() {
+}
+
+double MandelbrotPower::getPower() const { 
+    return mD;
+}
+
+void MandelbrotPower::setPower(const double& power) {
+    mD = power;
+}
+
+void MandelbrotPower::calculateNextPoint(const double x0, const double y0, const double& a, const double& b, double& x1, double& y1) const {
+    double x = x0;
+    double y = y0;
+    double r = std::sqrt( (x * x) + (y * y) );
+    double theta = std::atan2( y, x );
+    x1 = std::pow(r, mD) * std::cos( mD * theta ) + a;
+    y1 = std::pow(r, mD) * std::sin( mD * theta ) + b;
 }

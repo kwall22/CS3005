@@ -292,3 +292,14 @@ void setJuliaParameters(ActionData &action_data) {
     }
 }
 
+void setMandelbrotPower(ActionData &action_data){
+    MandelbrotPower *mpptr = dynamic_cast<MandelbrotPower*>(&action_data.getGrid());
+    if (mpptr != 0){
+        double power = getDouble(action_data, "Power? ");
+        mpptr->setPower(power);
+    }
+    else{
+        action_data.getOS() << "Not a MandelbrotPower object. Can't set power."<< std::endl; 
+    }
+}
+

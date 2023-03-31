@@ -73,6 +73,9 @@ void configureMenu( MenuData& menu_data ){
     menu_data.addAction("complex-fractal", setComplexFractal, "Choose to make a complex plane.");
     menu_data.addAction("julia", setJuliaFractal, "Choose to make a Julia set.");
     menu_data.addAction("mandelbrot", setMandelbrotFractal, "Choose to make a Mandelbrot set.");
+    menu_data.addAction("mandelbrot-power", setMandelbrotPowerFractal, "Choose to make a Mandelbrot set with the power function.");
+    menu_data.addAction("set-mandelbrot-power", setMandelbrotPower, "Choose a power for the Mandelbrot power function.");
+    menu_data.addAction("manhattan", setManhattanNumbers, "Choose to make a Manhattan distance grid.");
 }
 
 int imageMenu(std::istream& is, std::ostream& os){
@@ -132,4 +135,13 @@ void setJuliaFractal(ActionData& action_data) {
 void setMandelbrotFractal(ActionData &action_data) {
     MandelbrotSet* mbs = new MandelbrotSet();
     action_data.setGrid(mbs);
+}
+void setMandelbrotPowerFractal(ActionData &action_data) {
+    MandelbrotPower* mdp = new MandelbrotPower();
+    action_data.setGrid(mdp);
+}
+
+void setManhattanNumbers(ActionData &action_data) {
+    ManhattanNumbers* mn = new ManhattanNumbers();
+    action_data.setGrid(mn);
 }

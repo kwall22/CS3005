@@ -13,6 +13,16 @@ public:
 
 };
 
+class MandelbrotPower: public MandelbrotSet {
+public: 
+    MandelbrotPower();
+    virtual ~MandelbrotPower();
+    double getPower() const;
+    void setPower(const double& power);
+    virtual void calculateNextPoint(const double x0, const double y0, const double& a, const double& b, double& x1, double &y1) const;
+protected:
+    double mD;
+};
 
 
 
