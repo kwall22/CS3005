@@ -5,6 +5,7 @@
 #include "NumberGrid.h"
 #include "ComplexFractal.h"
 #include "JuliaSet.h"
+#include "ThreadedGrid.h"
 #include <cmath>
 
 void setSize( ActionData& action_data ){
@@ -301,5 +302,9 @@ void setMandelbrotPower(ActionData &action_data){
     else{
         action_data.getOS() << "Not a MandelbrotPower object. Can't set power."<< std::endl; 
     }
+}
+
+void calculateFractalSingleThread(ActionData &action_data) {
+    action_data.getGrid().NumberGrid::calculateAllNumbers();
 }
 

@@ -7,6 +7,7 @@
 #include "ComplexFractal.h"
 #include "JuliaSet.h"
 #include "MandelbrotSet.h"
+#include "ThreadedGrid.h"
 
 
 class ActionData {

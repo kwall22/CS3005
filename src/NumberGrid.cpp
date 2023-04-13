@@ -1,4 +1,5 @@
 #include "NumberGrid.h"
+//#include "ThreadedGrid.h"
 #include <cmath>
 NumberGrid::NumberGrid()
     : mHeight(300), mWidth(400), mMaxValue(255){
@@ -43,7 +44,7 @@ void NumberGrid::calculateAllNumbers() {
     }
 }
 
-void NumberGrid::setMaxNumber(const int &number) {
+void NumberGrid::setMaxNumber(const int& number) {
     if (number >= 0){
         mMaxValue = number;
     }
@@ -58,7 +59,7 @@ int NumberGrid::index(const int &row, const int &column) const {
     return index;
 }
 
-bool NumberGrid::indexValid(const int &row, const int &column) const {
+bool NumberGrid::indexValid(const int& row, const int& column) const {
     if (row >= 0 && row < mHeight && column < mWidth && column >= 0){
         return true;
     }
@@ -66,14 +67,14 @@ bool NumberGrid::indexValid(const int &row, const int &column) const {
     
 }
 
-bool NumberGrid::numberValid(const int &number) const {
+bool NumberGrid::numberValid(const int& number) const {
     if (number >=0 && number <= mMaxValue){
         return true;
     }
     return false;
 }
 
-int NumberGrid::getNumber(const int &row, const int &column) const {
+int NumberGrid::getNumber(const int& row, const int& column) const {
     if (indexValid(row, column)){
         int value = mGrid[index(row, column)];
         return value;
@@ -81,7 +82,7 @@ int NumberGrid::getNumber(const int &row, const int &column) const {
     return -1;
 }
 
-void NumberGrid::setNumber(const int &row, const int &column, const int &number) {
+void NumberGrid::setNumber(const int& row, const int& column, const int& number) {
     if (indexValid(row, column) && numberValid(number)){
         mGrid[index(row, column)] = number;
     }

@@ -1,13 +1,14 @@
 #include "ComplexFractal.h"
+#include "ThreadedGrid.h"
 #include <cmath>
 
 ComplexFractal::ComplexFractal()
-    : NumberGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
+    : ThreadedGrid(), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
 }
 
 ComplexFractal::ComplexFractal(const int& height, const int& width, const double& min_x, const double& max_x, const double& min_y, const double& max_y)
-    : NumberGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1) {
-    setGridSize(height, width);
+    : ThreadedGrid(), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1) {
+    ThreadedGrid::setGridSize(height, width);
     mMin_x = min_x;
     mMax_x = max_x;
     mMin_y = min_y;
@@ -36,7 +37,7 @@ double ComplexFractal::getMaxY() const {
 
 void ComplexFractal::setGridSize(const int &height, const int &width) {
     if (height >= 2 && width >= 2){
-        NumberGrid::setGridSize(height, width);
+        ThreadedGrid::setGridSize(height, width);
         setDeltas(calculateDeltaX(), calculateDeltaY());
     }
 }

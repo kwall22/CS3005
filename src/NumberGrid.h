@@ -3,6 +3,7 @@
 #include <vector>
 #include "PPM.h"
 #include "ColorTable.h"
+//#include "ThreadedGrid.h"
 //#include "ComplexFractal.h"
 
 class NumberGrid {

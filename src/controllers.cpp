@@ -6,8 +6,11 @@
 #include "ComplexFractal.h"
 #include "JuliaSet.h"
 #include "MandelbrotSet.h"
+#include "ThreadedGrid.h"
 #include <string>
 
+//all: image_file ascii_image questions_3 hello flag_romania ActionData.o MenuData.o ppm_menu
+//all: ActionData.o MenuData.o hello questions_3 ascii_image image_file ppm_menu 
 void showMenu( MenuData& menu_data, ActionData& action_data ){
     int len = menu_data.getNames().size();
     int i = 0;
@@ -68,7 +71,6 @@ void configureMenu( MenuData& menu_data ){
     menu_data.addAction("set-color-gradient", setColorGradient, "Smoothly set the RGB values for a range of slots in the color table.");
     menu_data.addAction("grid-apply-color-table", applyGridColorTable, "Use the grid values to set colors in the output image using the color table.");
     menu_data.addAction("fractal-plane-size", setFractalPlaneSize, "Set the dimensions of the grid in the complex plane.");
-    menu_data.addAction("fractal-calculate", calculateFractal, "Calculate the escape values for the fractal.");
     menu_data.addAction("julia-parameters", setJuliaParameters, "Set the parameters of the Julia Set function.");
     menu_data.addAction("complex-fractal", setComplexFractal, "Choose to make a complex plane.");
     menu_data.addAction("julia", setJuliaFractal, "Choose to make a Julia set.");
@@ -76,6 +78,8 @@ void configureMenu( MenuData& menu_data ){
     menu_data.addAction("mandelbrot-power", setMandelbrotPowerFractal, "Choose to make a Mandelbrot set with the power function.");
     menu_data.addAction("set-mandelbrot-power", setMandelbrotPower, "Choose a power for the Mandelbrot power function.");
     menu_data.addAction("manhattan", setManhattanNumbers, "Choose to make a Manhattan distance grid.");
+    menu_data.addAction("fractal-calculate", calculateFractal, "Calculate the escape values for the fractal.");
+    menu_data.addAction("fractal-calculate-single-thread", calculateFractalSingleThread, "Calculate the escape values for the fractal, single-thread.");
 }
 
 int imageMenu(std::istream& is, std::ostream& os){

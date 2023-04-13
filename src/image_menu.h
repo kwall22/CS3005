@@ -5,6 +5,7 @@
 #include "ComplexFractal.h"
 #include "ActionData.h"
 #include "MenuData.h"
+#include "ThreadedGrid.h"
 
 std::string getString( ActionData& action_data, const std::string& prompt);
 int getInteger(ActionData& action_data, const std::string& prompt);
@@ -67,3 +68,4 @@ void setMandelbrotFractal( ActionData& action_data );
 void setMandelbrotPower(ActionData& action_data);
 void setMandelbrotPowerFractal(ActionData& action_data);
 void setManhattanNumbers(ActionData& action_data);
+void calculateFractalSingleThread(ActionData& action_data);
