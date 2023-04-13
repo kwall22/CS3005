@@ -3,11 +3,11 @@
 #include <cmath>
 
 ComplexFractal::ComplexFractal()
-    : ThreadedGrid(), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
+    : ThreadedGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
 }
 
 ComplexFractal::ComplexFractal(const int& height, const int& width, const double& min_x, const double& max_x, const double& min_y, const double& max_y)
-    : ThreadedGrid(), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1) {
+    : ThreadedGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1) {
     ThreadedGrid::setGridSize(height, width);
     mMin_x = min_x;
     mMax_x = max_x;
