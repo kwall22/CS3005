@@ -102,6 +102,32 @@ void keyboard_cb(unsigned char c, int x, int y) {
     g_app_data->decreaseMaxNumber();
     g_app_data->createFractal();
     break;
+  case '1':
+    g_app_data->setInteractionMode(g_app_data->IM_COLOR1);
+    break;
+  case '2':
+    g_app_data->setInteractionMode(g_app_data->IM_COLOR2);
+    break;
+  case 'Y':
+    g_app_data->increaseRed();
+    break;
+  case 'y':
+    g_app_data->decreaseRed();
+    break;
+  case 'U':
+    g_app_data->increaseGreen();
+    break;
+  case 'u':
+    g_app_data->decreaseGreen();
+    break;
+  case 'I':
+    g_app_data->increaseBlue();
+    break;
+  case 'i':
+    g_app_data->decreaseBlue();
+    break;
+  case 'w':
+    g_app_data->writeImage();
   default:
     return; // if we don't care, return without glutPostRedisplay()
   }
@@ -176,6 +202,11 @@ void mouse_cb(int mouse_button, int state, int x, int y) {
   }
   if (mouse_button == GLUT_MIDDLE_BUTTON && state == GLUT_UP) {
     std::cout << "Middle Mouse Up. @" << xdisplay << "," << ydisplay << std::endl;
+  }
+  if (mouse_button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
+    std::cout << "Right Mouse Down. @" << xdisplay << "," << ydisplay << std::endl;
+    g_app_data->zoomOut();
+    g_app_data->createFractal();
   }
   glutPostRedisplay();
 }

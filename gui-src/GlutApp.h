@@ -7,7 +7,7 @@
 
 class GlutApp {
 public:
-  enum InteractionMode { IM_FRACTAL, IM_COLORTABLE };
+  enum InteractionMode { IM_FRACTAL, IM_COLORTABLE, IM_COLOR1, IM_COLOR2 };
   enum FractalMode { M_MANDELBROT, M_JULIA, M_COMPLEX };
 
   GlutApp(int height, int width);
@@ -38,6 +38,18 @@ public:
   void resetPlane();
   void createFractal();
 
+  void increaseChannel(Color& color, int channel);
+  void decreaseChannel(Color& color, int channel);
+  Color& fetchColor();
+  void increaseRed();
+  void decreaseRed();
+  void increaseGreen();
+  void decreaseGreen();
+  void increaseBlue();
+  void decreaseBlue();
+
+  void writeImage();
+
   void selectJulia();
   void selectMandelbrot();
   void selectComplexFractal();
@@ -64,6 +76,7 @@ protected:
   Color mColor1;
   Color mColor2;
   int mNumColor;
+  int mImageNumber;
   std::stringstream mInputStream;
   std::stringstream mOutputStream;
   ActionData mActionData;

@@ -5,7 +5,7 @@
 GlutApp::GlutApp(int height, int width)
   : mHeight(height), mWidth(width), mMinX(-2.0), 
     mMaxX(2.0), mMinY(-2.0), mMaxY(2.0), mInteractionMode(IM_FRACTAL), mFractalMode(M_MANDELBROT),
-    mMaxNumber(200), mColor1(252, 3, 132), mColor2(137, 38, 199), mNumColor(32), mActionData(mInputStream, mOutputStream){
+    mMaxNumber(200), mColor1(252, 3, 132), mColor2(137, 38, 199), mNumColor(32), mImageNumber(1), mActionData(mInputStream, mOutputStream){
   configureMenu(mMenuData);
   //mActionData.setGrid(new ComplexFractal);
   mA = -0.8;
@@ -60,6 +60,12 @@ void GlutApp::display() {
   }
   else if ( mInteractionMode == IM_COLORTABLE ){
     displayColorTable();
+  }
+  else if (getInteractionMode() == IM_COLOR1){
+    displayColorTable(); 
+  }
+  else if (getInteractionMode() == IM_COLOR2){
+    displayColorTable(); 
   }
 }
 
@@ -277,6 +283,130 @@ void GlutApp::createFractal() {
     fractalCalculate();
     gridApplyColorTable();
   }
+}
+
+void GlutApp::increaseChannel(Color &color, int channel) {
+  if (channel == 0){
+    int red = color.getRed();
+    red += 10;
+    if (red > 255){
+      color.setRed(255);
+    }
+    else{
+      color.setRed(red);
+    }
+  }
+  if (channel == 1){
+    int green = color.getGreen();
+    green += 10;
+    if (green > 255){
+      color.setGreen(255);
+    }
+    else{
+      color.setGreen(green);
+    }
+  }
+  if (channel == 2){
+    int blue = color.getBlue();
+    blue += 10;
+    if (blue > 255){
+      color.setRed(255);
+    }
+    else{
+      color.setBlue(blue);
+    }
+  }
+  setColorTable();
+  gridApplyColorTable();
+}
+
+void GlutApp::decreaseChannel(Color &color, int channel) {
+  if (channel == 0){
+    int red = color.getRed();
+    red -= 10;
+    if (red < 0){
+      color.setRed(0);
+    }
+    else{
+      color.setRed(red);
+    }
+  }
+  if (channel == 1){
+    int green = color.getGreen();
+    green -= 10;
+    if (green < 0){
+      color.setGreen(0);
+    }
+    else{
+      color.setGreen(green);
+    }
+  }
+  if (channel == 2){
+    int blue = color.getBlue();
+    blue -= 10;
+    if (blue < 0){
+      color.setRed(0);
+    }
+    else{
+      color.setBlue(blue);
+    }
+  }
+  setColorTable();
+  gridApplyColorTable();
+}
+
+Color &GlutApp::fetchColor() {
+  if (getInteractionMode() == IM_COLOR1){
+    return mColor1;
+  }
+  if (getInteractionMode() == IM_COLOR2){
+    return mColor2;
+  }
+  else {
+    static Color ec( -1, -1, -1 );
+    static Color c( -1, -1, -1 );
+    c = ec;
+    return c;
+  }
+}
+
+void GlutApp::increaseRed() {
+  increaseChannel(fetchColor(), 0);
+}
+
+void GlutApp::decreaseRed() {
+  decreaseChannel(fetchColor(), 0);
+}
+
+void GlutApp::increaseGreen() {
+  increaseChannel(fetchColor(), 1);
+}
+
+void GlutApp::decreaseGreen() {
+  decreaseChannel(fetchColor(), 1);
+}
+
+void GlutApp::increaseBlue() {
+  increaseChannel(fetchColor(), 2);
+}
+
+void GlutApp::decreaseBlue() {
+  decreaseChannel(fetchColor(), 2);
+}
+
+void GlutApp::writeImage() {
+  mOutputStream.clear();
+  mOutputStream.str("");
+  mInputStream.clear();
+  mInputStream.str("");
+
+  {
+    std::stringstream tmp;
+    tmp << "image-" << mImageNumber << ".ppm";
+    mInputStream.str(tmp.str());
+  }
+  mImageNumber += 1;
+  takeAction("write", mMenuData, mActionData);
 }
 
 void GlutApp::selectJulia() {
