@@ -69,6 +69,7 @@ clean:
 	-rm -f $(TARGETS)
 	-rm -f *.o
 	-rm -f *~
+	-rm -f *.ppm
 	-rm -rf $(DEPDIR)
 #
 #
