@@ -75,6 +75,7 @@ protected:
   int mMaxNumber;
   Color mColor1;
   Color mColor2;
+  Color mColor3;
   int mNumColor;
   int mImageNumber;
   std::stringstream mInputStream;
