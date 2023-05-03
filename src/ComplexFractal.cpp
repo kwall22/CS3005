@@ -3,19 +3,21 @@
 #include <cmath>
 
 ComplexFractal::ComplexFractal()
-    : ThreadedGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
+    : ThreadedGrid(201, 301){ // mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01){
+        setPlaneSize(-1.5, 1.5, -1, 1);
 }
 
 ComplexFractal::ComplexFractal(const int& height, const int& width, const double& min_x, const double& max_x, const double& min_y, const double& max_y)
-    : ThreadedGrid(201, 301), mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1) {
-    ThreadedGrid::setGridSize(height, width);
-    mDelta_x = 0.01;
-    mDelta_y = 0.01;
-    mMin_x = min_x;
-    mMax_x = max_x;
-    mMin_y = min_y;
-    mMax_y = max_y;
-    setDeltas(calculateDeltaX(), calculateDeltaY());
+    : ThreadedGrid(height, width){ // mMin_x(-1.5), mMax_x(1.5), mMin_y(-1), mMax_y(1), mDelta_x(0.01), mDelta_y(0.01) {
+    //ThreadedGrid::setGridSize(height, width);
+    setPlaneSize(min_x, max_x, min_y, max_y);
+    //mDelta_x = 0.01;
+    //mDelta_y = 0.01;
+    //mMin_x = min_x;
+   // mMax_x = max_x;
+   // mMin_y = min_y;
+    //mMax_y = max_y;
+    //setDeltas(calculateDeltaX(), calculateDeltaY());
 }
 
 ComplexFractal::~ComplexFractal(){
@@ -80,6 +82,10 @@ void ComplexFractal::setDeltas(const double &delta_x, const double &delta_y) {
     if (delta_x >= 0 && delta_y >= 0){
         mDelta_x = delta_x;
         mDelta_y = delta_y;
+    }
+    else{
+        mDelta_x = 0.01;
+        mDelta_y = 0.01;
     }
 }
 
