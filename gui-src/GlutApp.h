@@ -38,6 +38,8 @@ public:
   void resetPlane();
   void createFractal();
 
+  void toggleHSVColor();
+
   void increaseChannel(Color& color, int channel);
   void decreaseChannel(Color& color, int channel);
   Color& fetchColor();
@@ -78,6 +80,7 @@ protected:
   Color mColor3;
   int mNumColor;
   int mImageNumber;
+  bool mHSVColor;
   std::stringstream mInputStream;
   std::stringstream mOutputStream;
   ActionData mActionData;

@@ -6,7 +6,7 @@
 GlutApp::GlutApp(int height, int width)
   : mHeight(height), mWidth(width), mMinX(-2.0), 
     mMaxX(2.0), mMinY(-2.0), mMaxY(2.0), mInteractionMode(IM_FRACTAL), mFractalMode(M_MANDELBROT),
-    mMaxNumber(200), mColor1(252, 3, 132), mColor2(92, 34, 128), mColor3(36, 3, 252), mNumColor(32), mImageNumber(1), mActionData(mInputStream, mOutputStream){
+    mMaxNumber(200), mColor1(252, 3, 132), mColor2(92, 34, 128), mColor3(36, 3, 252), mNumColor(32), mImageNumber(1), mHSVColor(false), mActionData(mInputStream, mOutputStream){
   configureMenu(mMenuData);
   //mActionData.setGrid(new ComplexFractal);
   mA = -0.8;
@@ -115,28 +115,68 @@ void GlutApp::setColorTable() {
     mInputStream.str(tmp.str());
   }
   takeAction("set-color-table-size", mMenuData, mActionData);
+if (mHSVColor == false) {
+    mOutputStream.clear();
+    mInputStream.clear();
+    mOutputStream.str("");
+    mInputStream.str("");
+    {
+      std::stringstream tmp;
+      tmp << 0 << " " << mColor1.getRed() << " " << mColor1.getGreen() << " " << mColor1.getBlue() << " " << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue();
+      mInputStream.str(tmp.str());
+    }
+    takeAction("set-color-gradient", mMenuData, mActionData);
 
-  mOutputStream.clear();
-  mInputStream.clear();
-  mOutputStream.str("");
-  mInputStream.str("");
-  {
-    std::stringstream tmp;
-    tmp << 0 << " " << mColor1.getRed() << " " << mColor1.getGreen() << " " << mColor1.getBlue() << " " << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue();
-    mInputStream.str(tmp.str());
+    mOutputStream.clear();
+    mInputStream.clear();
+    mOutputStream.str("");
+    mInputStream.str("");
+    {
+      std::stringstream tmp;
+      tmp << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue() << " " << mNumColor -1 << " " << mColor3.getRed() << " " << mColor3.getGreen() << " " << mColor3.getBlue();
+      mInputStream.str(tmp.str());
+    }
+    takeAction("set-color-gradient", mMenuData, mActionData);
   }
-  takeAction("set-color-gradient", mMenuData, mActionData);
+  else if (mHSVColor == true){
+    mOutputStream.clear();
+    mInputStream.clear();
+    mOutputStream.str("");
+    mInputStream.str("");
+    double hue1;
+    double saturation1;
+    double value1;
+    mColor1.getHSV(hue1, saturation1, value1);
+    mColor1.setFromHSV(hue1, saturation1, value1);
+    double hue2;
+    double saturation2;
+    double value2;
+    mColor2.getHSV(hue2, saturation2, value2);
+    mColor2.setFromHSV(hue2, saturation2, value2);
+    double hue3;
+    double saturation3;
+    double value3;
+    mColor3.getHSV(hue3, saturation3, value3);
+    mColor3.setFromHSV(hue3, saturation3, value3);
+    {
+      std::stringstream tmp;
+      tmp << 0 << " " << mColor1.getRed() << " " << mColor1.getGreen() << " " << mColor1.getBlue() << " " << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue();
+      mInputStream.str(tmp.str());
+    }
+    takeAction("set-hsv-gradient", mMenuData, mActionData);
 
-  mOutputStream.clear();
-  mInputStream.clear();
-  mOutputStream.str("");
-  mInputStream.str("");
-  {
-    std::stringstream tmp;
-    tmp << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue() << " " << mNumColor -1 << " " << mColor3.getRed() << " " << mColor3.getGreen() << " " << mColor3.getBlue();
-    mInputStream.str(tmp.str());
+    mOutputStream.clear();
+    mInputStream.clear();
+    mOutputStream.str("");
+    mInputStream.str("");
+    {
+      std::stringstream tmp;
+      tmp << (mNumColor / 2) << " " << mColor2.getRed() << " " << mColor2.getGreen() << " " << mColor2.getBlue() << " " << mNumColor -1 << " " << mColor3.getRed() << " " << mColor3.getGreen() << " " << mColor3.getBlue();
+      mInputStream.str(tmp.str());
+    }
+    takeAction("set-hsv-gradient", mMenuData, mActionData);
+
   }
-  takeAction("set-color-gradient", mMenuData, mActionData);
 }
 
 void GlutApp::decreaseColorTableSize() {
@@ -295,6 +335,12 @@ void GlutApp::createFractal() {
     fractalCalculate();
     gridApplyColorTable();
   }
+}
+
+void GlutApp::toggleHSVColor() {
+  mHSVColor = true;
+  setColorTable();
+  gridApplyColorTable();
 }
 
 void GlutApp::increaseChannel(Color &color, int channel) {

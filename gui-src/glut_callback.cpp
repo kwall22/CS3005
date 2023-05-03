@@ -126,6 +126,8 @@ void keyboard_cb(unsigned char c, int x, int y) {
   case 'i':
     g_app_data->decreaseBlue();
     break;
+  case 'h':
+    g_app_data->toggleHSVColor();
   case 'w':
     g_app_data->writeImage();
   default:
