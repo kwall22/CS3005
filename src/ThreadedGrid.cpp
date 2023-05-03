@@ -54,10 +54,10 @@ void ThreadedGrid::worker() {
         mLock.unlock();
         
         if(!done){
-            mLock.lock();
+            //mLock.lock();
             int number = calculateNumber(coord.mRow, coord.mCol);
             setNumber(coord.mRow, coord.mCol, number);
-            mLock.unlock();
+            //mLock.unlock();
         }
     }
 }
