@@ -79,14 +79,14 @@ double ComplexFractal::getDeltaY() const {
 }
 
 void ComplexFractal::setDeltas(const double &delta_x, const double &delta_y) {
-    if (delta_x >= 0 && delta_y >= 0){
+    if (delta_x > 0 && delta_y > 0){
         mDelta_x = delta_x;
         mDelta_y = delta_y;
     }
-    else{
-        mDelta_x = 0.01;
-        mDelta_y = 0.01;
-    }
+    //else{
+        //mDelta_x = 0.01;
+        //mDelta_y = 0.01;
+    //}
 }
 
 double ComplexFractal::calculateDeltaY() const {

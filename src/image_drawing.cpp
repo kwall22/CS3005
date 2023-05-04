@@ -6,6 +6,7 @@
 #include "ComplexFractal.h"
 #include "JuliaSet.h"
 #include "ThreadedGrid.h"
+#include "ColorTable.h"
 #include <cmath>
 
 void setSize( ActionData& action_data ){
@@ -308,3 +309,29 @@ void calculateFractalSingleThread(ActionData &action_data) {
     action_data.getGrid().NumberGrid::calculateAllNumbers();
 }
 
+void setHueSaturationValueGradient(ActionData &action_data) {
+    int position_1 = getInteger(action_data, "First position? ");
+    double hue_1 = getInteger(action_data, "First hue? ");
+    double saturation_1 = getInteger(action_data, "First saturation? ");
+    double value_1 = getInteger(action_data, "First value? ");
+    int position_2 = getInteger(action_data, "Second position? ");
+    double hue_2 = getInteger(action_data, "Second hue? ");
+    double saturation_2 = getInteger(action_data, "Second saturation? ");
+    double value_2 = getInteger(action_data, "Second value? ");
+
+    
+    double red1 = action_data.getTable()[position_1].getRed();
+    double green1 = action_data.getTable()[position_1].getGreen();
+    double blue1 = action_data.getTable()[position_1].getBlue();
+    //modifys the rgb values based on the user HSV input 
+    HSV_to_RGB(hue_1, saturation_1, value_1, red1, green1, blue1);
+
+    double red2 = action_data.getTable()[position_2].getRed();
+    double green2 = action_data.getTable()[position_2].getGreen();
+    double blue2 = action_data.getTable()[position_2].getBlue();
+    //modifys the rgb values based on the user HSV input 
+    HSV_to_RGB(hue_2, saturation_2, value_2, red2, green2, blue2);
+
+
+    action_data.getTable().insertHueSaturationValueGradient(Color(red1, green1, blue1), Color(red2, green2, blue2), position_1, position_2);
+}
